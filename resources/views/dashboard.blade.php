@@ -27,7 +27,7 @@
                     <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" type="button" class="relative inline-flex items-center p-2 text-sm font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
                     <span class="sr-only">Notifications</span>
-                    <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">{{ count($notifikasi) }}</div>
+                    <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">10</div>
                     </button>
                 </div>
                 <!-- Dropdown menu -->
@@ -36,7 +36,6 @@
                         Notifications
                     </div>
                     <div class="divide-y divide-gray-100 dark:divide-gray-700">
-                        @foreach ($notifikasi as $notif)
                         <div class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
                             <div class="flex-shrink-0">
                                 <img class="rounded-full w-11 h-11" src="https://randomuser.me/api/portraits/men/1.jpg" alt="Jese image">
@@ -45,13 +44,12 @@
                                 </div>
                             </div>
                             <div class="w-full pl-3">
-                                 <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400"> {{ $notif->karyawan->nama }} <span class="font-semibold text-gray-900 dark:text-white">:</span>{{ $notif->keterangan }}</div>
+                                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400"> Nama <span class="font-semibold text-gray-900 dark:text-white">:</span>Lama</div>
                                 <a href="#" class="text-xs text-blue-600 dark:text-blue-500">
                                     Mark Read
                                 </a>
                             </div>
                         </div>
-                        @endforeach
                     </div>
                     <a href="#" class="block py-2 text-sm font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
                         <div class="inline-flex items-center ">
@@ -145,7 +143,7 @@
                     </svg>
                     <div
                         class="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
-                        <span class="flex items-center">{{ round((count($admins) / count($karyawans))*100) }}%</span>
+                        <span class="flex items-center">20%</span>
                     </div>
                 </div>
                 <div class="ml-2 w-full flex-1">
@@ -211,15 +209,15 @@
     </div>
     
     <!-- Chart -->
-    <div class="col-span-12 mt-5">
+    <div class="col-span-12 pt-10">
         <div class="grid gap-2 grid-cols-1 lg:grid-cols-2">
-            <div class="bg-white shadow-lg p-4" id="chartline"></div>
-            <div class="relative bg-white shadow-lg" id="chartpie"></div>
+            <div class="bg-white rounded-lg pt-5 shadow-xl" id="chartline"></div>
+            <div class="bg-white rounded-lg pt-5 shadow-xl" id="chartpie"></div>
         </div>
     </div>
 
     <!-- Table -->
-    <div class="col-span-12 mt-5">
+    <div class="col-span-12 pt-10">
         <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
             <div class="bg-white p-4 shadow-lg rounded-lg">
                 <h1 class="font-bold text-base">Table</h1>
@@ -423,7 +421,7 @@
     <script>
     var chart = document.querySelector('#chartpie')
     var options = {
-        series: [{{ round((count($admins) / count($karyawans))*100) }}, 45, 67, 83],
+        series: [10, 45, 67, 83],
         chart: {
             height: 350,
             type: 'radialBar',

@@ -29,8 +29,6 @@
     <div>
         <!-- Form input departemen -->
         <div>
-            <label for="">ID</label>
-            <input wire:model="departemen_id" type="text" name="departemen_id" id="departemen_id">
             <label for="">Nama</label>
             <input wire:model="nama" type="text" name="nama" id="nama">
             <label for="">Keterangan</label>
@@ -49,7 +47,6 @@
             <tbody>
                 @foreach ($departemens as $departemen)
                 <tr>
-                    <td>{{ $departemen->departemen_id }}</td>
                     <td>{{ $departemen->nama }}</td>
                     <td>{{ $departemen->keterangan }}</td>
                 </tr>

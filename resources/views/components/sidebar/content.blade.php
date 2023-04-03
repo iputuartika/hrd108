@@ -18,12 +18,12 @@
         title="Master Data"
         :active="Str::startsWith(request()->route()->uri(), 'data')"
     >
-        <x-slot name="icon">
+        <x-slot name="icon" href="">
             <x-heroicon-o-view-grid class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
         <x-sidebar.sublink
-            title="Data Karyawan"
+            title="Karyawan"
             href="{{ route('data.karyawan') }}"
             :active="request()->routeIs('data.karyawan')"
         />
@@ -36,6 +36,11 @@
             title="Kecamatan"
             href="{{ route('data.kecamatan') }}"
             :active="request()->routeIs('data.kecamatan')"
+        />
+        <x-sidebar.sublink
+            title="Jabatan"
+            href="{{ route('data.jabatan') }}"
+            :active="request()->routeIs('data.jabatan')"
         />
     </x-sidebar.dropdown>
     

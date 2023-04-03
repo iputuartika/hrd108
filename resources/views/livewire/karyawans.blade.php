@@ -36,7 +36,7 @@
         <!-- SEARCH -->
         <div class="relative w-64 flex flex-wrap items-stretch">
             <input wire:model="search" type="search" placeholder="Search" class="form-input px-3 py-2 placeholder-gray-400 text-gray-700 relative bg-white dark:bg-gray-700 rounded-lg text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pr-10" />
-            <span class="z-10 h-full pt-4 leading-snug font-normal  text-center text-gray-400 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
+            <span class="h-full pt-4 leading-snug font-normal  text-center text-gray-400 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -48,15 +48,37 @@
     <div class="flex items-center justify-between pt-3 rounded-lg">
         <!-- OPTION PILIHAN JUMLAH DATA YANG DITAMPILKAN DALAM 1 HALAMAN PAGINATION -->
         <div class="relative">
-        <label for="halaman" class="flex text-sm">Data / Halaman</label>
+            <label for="halaman" class="flex text-sm">Data / Halaman</label>
             <div class="relative">
                 <select wire:model="limitPerPage" class="form-control block text-sm pr-2 text-gray-900 border border-gray-300 rounded-lg w-16 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
+                    <option value="6">6</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                </select>
+            </div>
+        </div>
+        <div class="relative">
+            <label for="unit usaha" class="flex text-sm">Unit Usaha</label>
+            <div class="relative">
+                <select wire:model="unit_usaha" class="form-control w-64 block text-sm pr-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="" selected hidden>Pilih</option>
+                    <option value="sw108">Dupa Saraswati 108</option>
+                    <option value="bos">Bali Oxygen Supply</option>
+                    <option value="sag">Sari Asih Grosir</option>
                 </select>
             </div>
         </div> 
+        <div class="relative">
+            <label for="departemen" class="flex text-sm">Departement</label>
+            <div class="relative">
+                <select wire:model="dept" class="form-control w-64 block text-sm pr-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">Pilih</option>
+                    @foreach ($departemens as $dept)
+                    <option value="{{ $dept->id }}">{{ $dept->nama }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <!-- ACTION -->
         <div class="relative pt-5">
             <button data-dropdown-toggle="dropdownDots" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-transparet rounded-lg hover:bg-gray-100 focus:outline-none dark:text-white focus:ring-white dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button"> 
@@ -123,20 +145,22 @@
                         </div>
                     </td>
                     <td class="w-9 h-9">
-                        <img class="w-9 h-9 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg" alt="Jese image">
+                        @if ($karyawan->avatar == null)
+                        <img class="w-9 h-9 rounded-full" src="{{ asset('avatar.png') }}" alt="Photo">
+                        @else
+                        <img class="w-9 h-9 rounded-full" src="{{ asset($karyawan->avatar) }}" alt="Photo">
+                        @endif
                     </td>
                     <td class="text-gray-800 dark:text-white">
                         <div>
                             <ul>
                                 <li>
-                                    <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                    <div class="flex p-2 rounded">
                                         <div class="ml-2">
                                             <div class="text-sm font-semibold text-gray-600 dark:text-gray-300">
                                                 {{ $karyawan->nama}}
                                             </div>
                                             <p class="text-xs text-gray-500">
-                                                {{ $karyawan->departemen->nama }}.
-                                                {{ $karyawan->desa->nama }}.
                                                 {{ $karyawan->jabatan->nama }}
                                             </p>
                                         </div>
@@ -149,11 +173,11 @@
                         {{ $karyawan->alamat_lengkap }}
                     </td>
                     <td class="py-3 px-6 text-left">
-                        {{ $karyawan->kecamatan->nama }}
+                        {{ $karyawan->departemen->nama }}
                     </td>
                     <td class="px-6 py-4 text-center">
                         <div class="flex items-center justify-center">
-                            <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Aktif
+                             <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> {{$karyawan->status_karyawan}}
                         </div>
                     </td>
                     <td class="px-6 py-6 text-gray-900 dark:text-white">

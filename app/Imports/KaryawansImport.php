@@ -17,38 +17,68 @@ class KaryawansImport implements ToModel, WithStartRow
     public function model(array $row)
     {
         return new Karyawan([
-            //
-                'karyawan_id' =>$row[1],
-                'departemen_id' =>$row[5],
-                'kecamatan_id' =>$row[50],
-                'desa_id' =>$row[51],
-                'jabatan_id' =>$row[52],
-                'ktp' =>$row[4],
-                'npwp' =>$row[3],
-                'nama' =>$row[2],
-                'tempat_lahir' =>$row[12],
-                // dd($row[13]),
-                $unixDate = ($row[13] - 25569) * 86400,
-                // dd($unixDate),
-                $unixtoDate = gmdate("d-m-Y", $unixDate),
-                // dd($unixtoDate);
-                $date = Carbon::createFromFormat('d-m-Y', $unixtoDate)->format('Y-m-d'),
-                // dd($date);
-                
-                'tanggal_lahir' => $date,
-                'kontak' =>$row[19],
-                'email' =>$row[20],
-                'desa' =>$row[12],
-                'alamat_lengkap' =>$row[17],
-                'jenis_kelamin' =>$row[14],
-                'status' =>$row[8],
-                'gol_darah' =>$row[16],
-                'agama' =>$row[15],
+            // PERSONAL
+            'avatar' => $row[0],
+            'karyawan_id' => $row[1],
+            'ktp' => $row[2],
+            'npwp' => $row[3],
+            'bpjs' => $row[4],
+            'nama' => $row[5],
+            'departemen_id' => $row[6],
+            'jabatan_id' => $row[7],
+            'tempat_lahir' => $row[8],
+            'tanggal_lahir' => $row[9],
+            'email' => $row[10],
+            'kontak' => $row[11],
+            'kontak_darurat' => $row[12],
+            'kecamatan_id' => $row[13],
+            'desa_id' => $row[14],
+            'alamat_lengkap' => $row[15],
+            'jenis_kelamin' => $row[16],
+            'pendidikan' => $row[17],
+            'status' => $row[18],
+            'gol_darah' => $row[19],
+            'agama' => $row[20],
+
+            // KELUARGA
+            'nama_ibu' => $row[21],
+            'jumlah_tanggungan' => $row[22],
+            'nama_suami_istri' => $row[23],
+            'pekerjaan' => $row[24],
+            'tl_suami_istri' => $row[25],
+            'tgl_suami_istri' => $row[26],
+            'anak1' => $row[27],
+            'tempat_lahir_anak1' => $row[28],
+            'tanggal_lahir_anak1' => $row[29],
+            'anak2' => $row[30],
+            'tempat_lahir_anak2' => $row[31],
+            'tanggal_lahir_anak2' => $row[32],
+            'anak3' => $row[33],
+            'tempat_lahir_anak3' => $row[34],
+            'tanggal_lahir_anak3' => $row[35],
+
+            // KARIR
+            'status_karyawan' => $row[36],
+            'tanggal_bergabung' => $row[37],
+            'awal_kontrak' => $row[38],
+            'akhir_kontrak' => $row[39],
+            // 'masa_kontrak' =>$row[],
+            // 'masa_kerja' =>$row[],
+            'tanggal_keluar' => $row[40],
+            'keterangan' => $row[41],
+            'status_bpjs' => $row[42],
+
+            // GAJI
+            'no_rek' => $row[43],
+
+            // ADMIN  
+            'admin' => $row[44],
+            'unit_usaha' => $row[45], 
         ]);
     }
 
     public function startRow(): int
     {
-        return 4;
+        return 3;
     }
 }

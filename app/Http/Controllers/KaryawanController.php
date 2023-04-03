@@ -39,6 +39,6 @@ class KaryawanController extends Controller
         session()->flash('message', 'Data Siswa Berhasil Diimport!');
     
         // alihkan halaman kembali
-        return redirect('/data/karyawan');
+        return redirect('/data/karyawan/1');
     }
 }

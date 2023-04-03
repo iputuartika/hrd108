@@ -26,13 +26,12 @@ class Departemens extends Component
             'nama' => 'required',
         ]);
     
-        Departemen::updateOrCreate(['departemen_id' => $this->departemen_id], [
-            'departemen_id' =>$this->departemen_id,
+        Departemen::updateOrCreate(['id' => $this->departemen_id], [
             'nama' => $this->nama,
             'keterangan' => $this->keterangan,
         ]);
 
-        session()->flash('message', $this->departemen_id ? 'Data departemen berhasil di tambahkan.' : 'Data departemen berhasil di update.');
+        session()->flash('message', $this->departemen_id ? 'Data departemen berhasil di update.' : 'Data departemen berhasil di tambahkan.');
     }
 
 }

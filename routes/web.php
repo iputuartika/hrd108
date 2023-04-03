@@ -8,6 +8,7 @@ use App\Http\Livewire\Kecamatans;
 use App\Imports\KaryawansImport;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Livewire\Jabatans;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/data/karyawan', Karyawans::class)->name('data.karyawan');
     Route::get('/data/departemen', Departemens::class)->name('data.departemen');
     Route::get('/data/kecamatan', Kecamatans::class)->name('data.kecamatan');
+    Route::get('/data/jabatan', Jabatans::class)->name('data.jabatan');
 });
 
 // Route::post('/import', function () {
